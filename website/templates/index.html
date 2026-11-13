@@ -1,62 +1,159 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); background-color: #ffffff}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px Times; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); background-color: #ffffff}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
-    span.s1 {font-kerning: none}
-    span.s2 {font: 11.0px Times; font-kerning: none}
-    span.s3 {font: 11.0px 'Helvetica Neue'; font-kerning: none}
-    span.s4 {font-kerning: none; background-color: #ffffff}
-    span.s5 {font: 12.0px Times; font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
-    span.s6 {font-kerning: none; background-color: #b3b3b3}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Source+Serif+4:opsz,wght@8..60,600..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<p class="p1"><span class="s1">Under Development</span></p>
-<h1 style="margin: 0.0px 0.0px 16.1px 0.0px; font: 24.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>Campus Solutions</b></span></h1>
-<p class="p1"><span class="s1">Find a campus resource available on a selected day and time.</span></p>
-<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>Search campus resources</b></span></h2>
-<p class="p1"><span class="s1">This prototype searches a small demonstration dataset.</span></p>
-<p class="p4"><span class="s1">Resource category</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s2">Select a category</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>{% for category in categories %}</span></p>
-<p class="p6"><span class="s3"><span class="Apple-converted-space">                            </span></span><span class="s1"> {{ category.category_name }}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>{% endfor %}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s5"> Day</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>{% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] %}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                            </span></span><span class="s2"> {{ day }}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>{% endfor %}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s5"> Start time End time </span><span class="s6">Search</span></p>
-<p class="p4"><span class="s1">{% if error_message %}</span></p>
-<p class="p1"><span class="s1">{{ error_message }}</span></p>
-<p class="p4"><span class="s1">{% endif %} {% if results is not none %}</span></p>
-<h2 style="margin: 0.0px 0.0px 14.9px 0.0px; font: 18.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>Search results</b></span></h2>
-<p class="p4"><span class="s1">{% if results %}</span></p>
-<p class="p4"><span class="s1">{% for resource in results %}</span></p>
-<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times; -webkit-text-stroke: #000000"><span class="s1"><b>{{ resource.resource_name }}</b></span></h3>
-<p class="p1"><span class="s1">{{ resource.description }}</span></p>
-<p class="p4"><span class="s1">Category</span></p>
-<p class="p4"><span class="s1">{{ resource.category_name }}</span></p>
-<p class="p4"><span class="s1">Location</span></p>
-<p class="p4"><span class="s1">{{ resource.building_name }} {% if resource.room_number %}, {{ resource.room_number }}{% endif %}</span></p>
-<p class="p4"><span class="s1">Available</span></p>
-<p class="p4"><span class="s1">{{ resource.start_time.strftime('%I:%M %p') }} to {{ resource.end_time.strftime('%I:%M %p') }}</span></p>
-<p class="p4"><span class="s1">Appointment</span></p>
-<p class="p4"><span class="s1">{{ 'Required' if resource.appointment_required else 'Not required' }}</span></p>
-<p class="p4"><span class="s1">{% endfor %}</span></p>
-<p class="p4"><span class="s1">{% else %}</span></p>
-<p class="p1"><span class="s1">No resources match the selected category and time.</span></p>
-<p class="p4"><span class="s1">{% endif %}</span></p>
-<p class="p4"><span class="s1">{% endif %}</span></p>
-<p class="p1"><span class="s1">CS 514 Database Project</span></p>
+  <header class="topbar">
+    <div class="wrap topbar-row">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>Campus Solutions</span>
+      <span class="topbar-note">SDSU Campus Resource Finder</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Find campus resources open when you need them.</h1>
+        <p class="hero-sub">Pick a category, a day and a time. You'll see what's open, where it is, and whether you need an appointment.</p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="week">
+          <div class="day"><span class="day-name">Mon</span><span class="slot" style="--t: 14; --h: 34"></span><span class="slot" style="--t: 58; --h: 26"></span></div>
+          <div class="day"><span class="day-name">Tue</span><span class="slot" style="--t: 6; --h: 22"></span><span class="slot is-you" style="--t: 40; --h: 24"></span></div>
+          <div class="day"><span class="day-name">Wed</span><span class="slot" style="--t: 22; --h: 44"></span></div>
+          <div class="day"><span class="day-name">Thu</span><span class="slot" style="--t: 10; --h: 30"></span><span class="slot" style="--t: 52; --h: 32"></span></div>
+          <div class="day"><span class="day-name">Fri</span><span class="slot" style="--t: 30; --h: 28"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="wrap search-wrap">
+      <div class="search-card">
+        <h2>Search campus resources</h2>
+        <p class="card-note">This prototype searches a small demonstration dataset.</p>
+
+        <form class="search-form" method="post" action="{{ url_for('index') }}">
+          <label class="field field-category">
+            <span>Resource category</span>
+            <select name="category_id" required>
+              <option value="">Select a category</option>
+              {% for category in categories %}
+              <option value="{{ category.category_id }}"
+                {% if selected_category|string == category.category_id|string %}selected{% endif %}>
+                {{ category.category_name }}
+              </option>
+              {% endfor %}
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Day</span>
+            <select name="day_of_week" required>
+              {% for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] %}
+              <option value="{{ day }}" {% if selected_day == day %}selected{% endif %}>{{ day }}</option>
+              {% endfor %}
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Start time</span>
+            <input type="time" name="start_time" value="{{ selected_start }}" required>
+          </label>
+
+          <label class="field">
+            <span>End time</span>
+            <input type="time" name="end_time" value="{{ selected_end }}" required>
+          </label>
+
+          <button type="submit">Search resources</button>
+        </form>
+
+        {% if error_message %}
+        <p class="message error-message" role="alert">{{ error_message }}</p>
+        {% endif %}
+      </div>
+    </section>
+
+    {% if results is not none %}
+    <section class="wrap results" aria-live="polite">
+      {% if results %}
+      <div class="results-head">
+        <h2>{{ results|length }} {{ 'resource' if results|length == 1 else 'resources' }} open on {{ selected_day }}</h2>
+        <p class="results-note">Blue bars show opening hours. The amber outline marks the time you searched.</p>
+      </div>
+
+      {% set lo = 420 %}
+      {% set hi = 1320 %}
+      {% set span = 900 %}
+      {% set rs = selected_start[:2]|int * 60 + selected_start[3:5]|int %}
+      {% set re = selected_end[:2]|int * 60 + selected_end[3:5]|int %}
+      {% set win_from = [rs, lo]|max %}
+      {% set win_to = [re, hi]|min %}
+
+      <ul class="results-list">
+        {% for resource in results %}
+        {% set s = resource.start_time.hour * 60 + resource.start_time.minute %}
+        {% set e = resource.end_time.hour * 60 + resource.end_time.minute %}
+        {% set open_from = [s, lo]|max %}
+        {% set open_to = [e, hi]|min %}
+        <li class="resource">
+          <div class="resource-top">
+            <h3>{{ resource.resource_name }}</h3>
+            <span class="chip">{{ resource.category_name }}</span>
+          </div>
+          {% if resource.description %}<p class="resource-about">{{ resource.description }}</p>{% endif %}
+
+          <dl class="facts">
+            <div>
+              <dt>Location</dt>
+              <dd>{{ resource.building_name }}{% if resource.room_number %}, {{ resource.room_number }}{% endif %}</dd>
+            </div>
+            <div>
+              <dt>Appointment</dt>
+              <dd>
+                {% if resource.appointment_required %}
+                <span class="tag tag-required">Required</span>
+                {% else %}
+                <span class="tag">Not required</span>
+                {% endif %}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="hours">
+            <p class="hours-caption">Open {{ resource.start_time.strftime('%-I:%M %p') }} to {{ resource.end_time.strftime('%-I:%M %p') }}</p>
+            <div class="bar" aria-hidden="true">
+              <span class="bar-open" style="left: {{ ((open_from - lo) * 100 / span)|round(2) }}%; width: {{ ((open_to - open_from) * 100 / span)|round(2) }}%;"></span>
+              {% if win_to > win_from %}
+              <span class="bar-window" style="left: {{ ((win_from - lo) * 100 / span)|round(2) }}%; width: {{ ((win_to - win_from) * 100 / span)|round(2) }}%;"></span>
+              {% endif %}
+            </div>
+            <div class="scale" aria-hidden="true">
+              <span>7 AM</span><span>10 AM</span><span>1 PM</span><span>4 PM</span><span>7 PM</span><span>10 PM</span>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="message">No {{ selected_day }} resources match that category and time. Try a shorter window or a different day.</p>
+      {% endif %}
+    </section>
+    {% endif %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">CS 514 Database Project</div>
+  </footer>
 </body>
 </html>
